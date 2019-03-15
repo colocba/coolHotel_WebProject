@@ -1,0 +1,373 @@
+*, html, body {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+    background-color: lightgrey;
+    box-shadow: 5px 0px 6px #ccc;
+    line-height: 70px;
+}
+
+.logo img {
+	height: 100px;
+	padding: 10px;
+}
+
+
+#head_list {
+	width: 70%;
+	float: right;
+	margin-left: 10%;
+}
+
+#head_list a {
+	font-weight: bold;
+	transition: all 0.5s ease-in;
+}
+
+#head_list a:hover {
+	text-decoration: none;
+}
+
+#carouselExampleSlidesOnly img {
+	height: 500px;
+}
+
+#carouselExampleIndicators img {
+	height: 500px;
+}
+
+.book-cont {
+	height: 200px;
+	width: 100%;
+	background-image: url(pictures/booking_background.jpg)
+}
+
+.booking-cont {
+	padding: 40px 0px;
+	margin-left: 0%;
+	margin-right: 0%;
+}
+
+.booking-cont ul {
+	margin: 0;
+	padding: 0;
+}
+
+.booking-cont ul li {
+	list-style-type: none;
+	float: left;
+	background: #ffffff;
+    width: 19%;
+	padding: 15px 20px;
+	margin-right: 10px;
+	display: inline-block;
+	height: 120px;
+}
+
+#availbtn {
+	background-color: transparent;
+	padding: 0px 20px;
+}
+
+#ourrooms-h {
+    font-family: "Cinzel Decorative";
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 2.14;
+    letter-spacing: 2.8px;
+    text-align: center;
+    color: #F16C6D;
+    margin-bottom: 5px;
+}
+
+#chooseFavourite-h {
+	font-family: "Playfair Display", serif;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    color: #333333;
+    margin: 0;
+}
+
+.divisor {
+    width: 300px;
+    height: 3px;
+    background-color: #F16C6D;
+    margin: 0 auto;
+    margin-top: 38px;
+    margin-bottom: 100px;
+}
+
+.item {
+    background: #fff;
+    margin-bottom: 61px;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+	transition: all 0.5s;
+	border: 1px solid;
+	border-radius: 3px;
+	vertical-align: baseline;
+}
+
+.item ul {
+	margin: 0px;
+    padding: 0px;
+    padding-top: 30px;
+    padding-bottom: 26px;
+}
+
+.price-item-left ul {
+	padding-top: 0px;
+}
+
+.item ul li {
+	list-style-type: none;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+
+}
+
+.item p {
+	font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    line-height: 2.86;
+    text-align: left;
+    color: #333333;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.item i {
+	margin-right: 10px;
+}
+
+.price-item {
+	border-top: 1px solid #f0f0f0;
+	padding: 40px 0;
+
+}
+
+.price-item-left {
+	float: left;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+}
+
+.price-item-left ul li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+.price-item-right {
+	margin-top: 5px;
+	float: right;
+}
+
+.price-item-right a {
+	font-family: 'Raleway', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 2.31;
+    text-align: left;
+    color: #333333;
+}
+
+.item,.card-text span {
+	font-weight: normal;
+    color: #7b7b7b;
+}
+
+.card-title {
+    color: #F16C6D;
+
+}
+.card-body a {
+    background-color: #F16C6D;
+    border: 1 solid #F16C6D;
+}
+#card2NoRooms {
+    display: none;
+    color: red;
+}
+
+#card3NoRooms {
+    display: none;
+    color: red;
+}
+
+#card1NoRooms {
+    display: none;
+    color: red;
+}
+
+.item h3 {
+    margin-top: 40px;
+    margin-bottom: 0px;
+}
+
+.item img {
+	height: 500px;
+	width: 100%;
+}
+
+.clear-padding {
+	padding: 0px;
+}
+
+.icons-order {
+	display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	
+}
+
+#availbtn .btn {
+	background-color: #F16C6D;
+	border-color: #F16C6D;
+	height: 120px;
+	padding: 22px 20px;
+	text-align: center;
+	font-family: "Playfair Display", serif;
+    font-size: 24px;
+    font-weight: bold;
+	font-style: italic;
+}
+#room-cards div{
+    background-color:lightgrey;
+}
+
+#room-cards .inner-card{
+    background-color: white;
+    opacity: 0.7;
+}
+
+#roomCardsBtn {
+	font-weight: bold;
+	transition: all 0.5s ease-in;
+	opacity: 0.6;
+}
+#roomCardsBtn:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.booking-cont ul li h4 {
+	font-family: "Cinzel Decorative";
+	font-size: 20px;
+	font-weight: bold;
+	text-align: left;
+	color: #7b7b7b;
+	border-bottom: 1px solid #e0e0e0;
+	padding-bottom: 13px;
+	margin-bottom: 10px;
+	margin-top: 0px;
+}
+
+.booking-cont ul li input {
+    width: 100%;
+    height: 50px;
+    border-radius: 0px;
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.43;
+    text-align: left;
+    color: #333333;
+}
+
+.booking-cont ul li .form-control {
+    background: transparent;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.collapse-card {
+	border: none !important;
+	padding: 5% 10% !important;
+}
+
+.site-footer {
+    background: #333333;
+    padding-top: 40px;
+}
+
+.message-footer {
+    background: url(https://addons-media.operacdn.com/media/CACHE/images/themes/25/23525/1.0-rev2/images/0717fd72-d1eb-4ac8-acd7-b210e87113e4/8f579416c59d5761083eb0d02f21ff5a.jpg)no-repeat center center fixed;
+    padding-top: 0px;
+    background-size: cover;
+}
+#contact-us-div{
+    text-align: center;
+}
+#contact-us-logo {
+    padding: 30px 0px;
+}
+
+#contact-us-logo img{
+    height: 100px;
+    padding: 0px;
+}
+
+.widget-content i {
+    color: #F16C6D;
+}
+
+.widget-content p{
+    color: white;
+}
+
+.message-container input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    opacity: 0.6;
+}
+
+.message-container input[type=submit] {
+    background-color: #F16C6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+    input[type=submit]:hover {
+        background-color: cadetblue;
+    }
+
+.message-container {
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.message-container label{
+    color: white;
+    font-weight: bold;
+}
+.message-footer h3 {
+    color: #F16C6D;
+    font-weight: bold;
+    text-align: center;
+}
+
+#send-btn {
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+}
+
