@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.1/dist/bootstrap-table.min.css">
+        <link rel="stylesheet" type="text/css" href="css/dash.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<!------------------------------------ Side navbar -------------------------------->
+
+<body>
+        <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#" onclick="showClientsTable()">Clients</a>
+                <a href="#" onclick="showRoomsTable()">Rooms</a>
+                <a href="#" onclick="manageUsers()">Manage Users</a>
+                <a href="#" onclick="showDashboard()">Dashboard</a>
+                <a href="" onclick="logout()">Logout</a>
+        </div>
+
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+        <div class="container h-100 padding-left-right">
+                <!------------------------------------ Header title -------------------------------->
+                <div class="d-flex justify-content-center header-logo-name">
+                        <ul>
+                                <li>
+                                        <img src="https://cdn0.iconfinder.com/data/icons/hotel-and-restaurant-cool-vector-2/128/57-512.png"
+                                                style="height:50px;">
+                                </li>
+                                <li>
+                                        <h2>Cool Hotel</h2>
+                                </li>
+                        </ul>
+                </div>
+                <div class="divisor"></div>
+
+                <!------------------------------------ Clients table -------------------------------->
+                <div class="d-flex justify-content-center h-100 transp-border">
+                        <table class="table table-striped d-none" data-checkbox-header="false"
+                        data-click-to-select="true" id="clients-table">
+                                <thead>
+                                        <tr>
+                                                <th scope="col" data-checkbox="true">#</th>
+                                                <th data-field="firstName" scope="col">First Name</th>
+                                                <th data-field="lastName" scope="col">Last Name</th>
+                                                <th data-field="PhoneNum" scope="col">Phone Number</th>
+                                                <th data-field="country" scope="col">Country</th>
+                                                <th data-field="email" scope="col">Email</th>
+                                        </tr>
+                                </thead>
+                        </table>
+                </div>
+
+                <!------------------------------------ Rooms tables -------------------------------->
+                <div class="justify-content-center h-100 transp-border d-none" id="rooms-div">
+                        <h2>Normal Rooms Type</h2>
+                        <!-- Normal rooms table -->
+                        <table class="table table-hover" data-search="true" data-search-align="left"
+                                data-sortable="true" id="rooms-table-normal">
+                                <thead>
+                                        <tr>
+                                                <th data-field="roomNumber" data-sortable="true" scope="col">#</th>
+                                                <th data-field="checkIn" data-sortable="true" scope="col">Check In Date
+                                                </th>
+                                                <th data-field="checkOut" data-sortable="true" scope="col">Check Out
+                                                        Date</th>
+                                                <th data-field="client" data-sortable="true" scope="col">Client
+                                                        currently on room</th>
+                                                <th data-field="pricePerPe" data-sortable="true" scope="col">Price per
+                                                        person</th>
+                                        </tr>
+                                </thead>
+                        </table>
+
+                        <h2>Deluxe Rooms Type</h2>
+                        <!-- Deluxe rooms table -->
+                        <table class="table  table-hover" data-search="true" data-search-align="left"
+                                data-sortable="true" id="rooms-table-deluxe">
+                                <thead>
+                                        <tr>
+                                                <th data-field="roomNumber" data-sortable="true" scope="col">#</th>
+                                                <th data-field="checkIn" data-sortable="true" scope="col">Check In Date
+                                                </th>
+                                                <th data-field="checkOut" data-sortable="true" scope="col">Check Out
+                                                        Date</th>
+                                                <th data-field="client" data-sortable="true" scope="col">Client
+                                                        currently on room</th>
+                                                <th data-field="pricePerPe" data-sortable="true" scope="col">Price per
+                                                        person</th>
+                                        </tr>
+                                </thead>
+                        </table>
+
+                        <h2>Suite Rooms Type</h2>
+                        <!-- Suite rooms table -->
+                        <table class="table table-hover" data-search="true" data-search-align="left"
+                                data-sortable="true" id="rooms-table-suite">
+                                <thead>
+                                        <tr>
+                                                <th data-field="roomNumber" data-sortable="true" scope="col">#</th>
+                                                <th data-field="checkIn" data-sortable="true" scope="col">Check In Date
+                                                </th>
+                                                <th data-field="checkOut" data-sortable="true" scope="col">Check Out
+                                                        Date</th>
+                                                <th data-field="client" data-sortable="true" scope="col">Client
+                                                        currently on room</th>
+                                                <th data-field="pricePerPe" data-sortable="true" scope="col">Price per
+                                                        person</th>
+                                        </tr>
+                                </thead>
+                        </table>
+                </div>
+
+                <!------------------------------------ Users table -------------------------------->
+                <div class="justify-content-center h-100 transp-border d-none" id="users-div">
+                        <div class="row justify-content-center">
+                                <table class="table table-striped" id="users-table">
+                                        <thead>
+                                                <tr>
+                                                        <th scope="col">#</th>
+                                                        <th data-field="name" scope="col">First Name</th>
+                                                        <th data-field="lastName" scope="col">Last Name</th>
+                                                        <th data-field="userType" scope="col">Users permission</th>
+                                                        <th data-field="email" scope="col">Email</th>
+                                                </tr>
+                                        </thead>
+                                </table>
+                        </div>
+                        <div class="row justify-content-center">
+                                <button type="button" class="btn btn-primary">Delete selected users</button>
+                                <div class="divisor"></div>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#signup-form">Register a new user</button>
+                        </div>
+                </div>
+
+                <!------------------------------------ Signup form for users ----------------------->
+                <div id="signup-form" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-md">
+                                <div class="modal-content" style="padding: 20px;">
+                                        <h1>Sign Up a new user</h1>
+                                        <p>Please fill in this form to create a new user.</p>
+                                        <hr>
+
+                                        <label><b>Name</b></label>
+                                        <input type="text" placeholder="Enter Name" id="name" required>
+
+                                        <label><b>Last Name</b></label>
+                                        <input type="text" placeholder="Enter last name" id="lastname" required>
+
+                                        <label><b>Permissions for user (admin/normal)</b></label>
+                                        <input type="text" placeholder="Enter permission" id="permission" required>
+
+                                        <label for="email"><b>Email</b></label>
+                                        <input type="text" placeholder="Enter Email" id="email" required>
+
+                                        <label for="psw"><b>Password</b></label>
+                                        <input type="password" placeholder="Enter Password" id="password" required>
+
+                                        <p>By creating an account you agree to our <a href="#"
+                                                        style="color:dodgerblue">Terms &
+                                                        Privacy</a>.</p>
+
+                                        <div class="clearfix">
+                                                <button class="signupbtn" onclick="signupBtn()">Sign Up</button>
+                                                <button class="cancelbtn">Cancel</button>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+                <!------------------------------------ Charts -------------------------------->
+                <div class="justify-content-center h-100 transp-border"
+                        style="position: relative; height:20vh; width:60vw" id="charts">
+                        <h2>Charts</h2>
+                        <canvas id="barChart"></canvas>
+                        <canvas id="linearChart"></canvas>
+                </div>
+        </div>
+
+        <script src="js/Chart.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+                integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+                integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+                crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.14.1/dist/bootstrap-table.min.js"></script>
+
+</body>
+
+<!-- Firebase purposes -->
+<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+<script>
+        var config = {
+                apiKey: "AIzaSyBV4ZUpD-VGeQyQMwvXxHVhC4gG2pvf_pk",
+                authDomain: "coolhotel-f70fd.firebaseapp.com",
+                databaseURL: "https://coolhotel-f70fd.firebaseio.com",
+                projectId: "coolhotel-f70fd",
+                storageBucket: "",
+                messagingSenderId: "795625797575"
+        };
+        firebase.initializeApp(config);
+</script>
+
+<!-- Side navbar code -->
+<script>
+        function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+        }
+</script>
+
+<script src="js/dash.js"></script>
+
+</html>
