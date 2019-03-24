@@ -15,6 +15,15 @@ body {
     transition: 0.5s;
     padding-top: 60px;
   }
+
+  .sticky {
+    font-size:50px;
+    cursor:pointer;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-left: 10px;
+  }
   
   .sidenav a {
     padding: 8px 8px 8px 32px;
@@ -52,7 +61,6 @@ body {
 
   .table {
       background-color: white;
-      border-radius: 10px;
   }
 
   .transp-border {
@@ -67,11 +75,11 @@ body {
   }
 
   .header-logo-name {
-      height: 50px;
+      height: 30px;
   }
 
   .divisor {
-    width: 300px;
+    width: 100%;
     height: 3px;
     background-color: white;
     margin: 0 auto;
@@ -84,18 +92,37 @@ body {
   padding: 10px;
 }
 
-#myChart {
-  height: 150px;
-  width: 150px;
-}
-
 #users-div .btn {
   margin: 20px 400px 0px 400px;
 }
 
-#users-table {
-  margin-bottom: 50px;
-  width: 200px;
+#clients-div .btn {
+  margin: 20px 400px 0px 400px;
+}
+
+.fixed-table-loading {
+  display: none;
+}
+
+#charts canvas {
+  background-color: white;
+  padding: 20px;
+}
+
+#charts .card {
+  margin: 10px;
+}
+
+#linearChart {
+  height: 300px;
+}
+
+#barChart {
+  height: 200px;
+}
+
+#charts h2 {
+  text-align: center;
 }
 
 * {box-sizing: border-box}
