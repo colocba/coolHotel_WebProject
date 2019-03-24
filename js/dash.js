@@ -2,30 +2,55 @@
 var clientsRef;
 var roomsRef;
 var profitsRef;
+var messagesRef;
 var currentTableShowing = "charts";
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+        var uid = user.uid;
         // current user is connected
         // firebase database references
         clientsRef = firebase.database().ref('clients/');
         roomsRef = firebase.database().ref('rooms/');
         usersRef = firebase.database().ref('users/');
         profitsRef = firebase.database().ref('profits/');
+        messagesRef = firebase.database().ref('messages/');
 
+        // Making users table
+        usersRef.once('value').then(function (snapshot) {
+            var val = snapshot.val();
+            // Saying hi to the current user connected
+            document.getElementById("user-name").innerHTML = val[uid].name;
+            changeUIforUserType(uid, val);
+        });
+
+        usersRef.on('value', function (snapshot) {
+            var val = snapshot.val();
+            $('#users-table').bootstrapTable('destroy');
+            updateTableFromDB('#users-table', snapshot.val());
+        })
 
         // Making clients table
-        clientsRef.once('value').then(function (snapshot) {
-            var val = snapshot.val();
+        clientsRef.on('value', function (snapshot) {
+            $('#clients-table').bootstrapTable('destroy');
             updateTableFromDB('#clients-table', snapshot.val());
+            $('#num-of-clients').html('   ' + snapshot.numChildren());
+        });
+
+        // Initializing messages dropdown
+        messagesRef.on('value', function (snapshot) {
+            $('#accordion').remove();
+            $('#modal-body-message').html('<div id="accordion"></div>');
+            updateMessageDropdown(snapshot);
+            $('#num-msg').html('    ' + snapshot.numChildren());
         });
 
         // Making rooms table
-        roomsRef.once('value').then(function (snapshot) {
-            var val = snapshot.val();
+        roomsRef.on('value', function (snapshot) {
 
             // Chart of occupancy for each type of room
             var data = getRoomsAvailability(snapshot.val());
+            setOccupancyCard(data);
             var ctx1 = document.getElementById("barChart");
             makeBarChart(ctx1, data);
 
@@ -34,16 +59,10 @@ firebase.auth().onAuthStateChanged(function (user) {
         });
 
         // Chart for profits on each month
-        profitsRef.once('value').then(function (snapshot) {
+        profitsRef.on('value', function (snapshot) {
             var data = getProfitsData(snapshot.val());
             var ctx2 = document.getElementById("linearChart");
             makeLineChart(ctx2, data);
-        });
-
-        // Making users table
-        usersRef.once('value').then(function (snapshot) {
-            var val = snapshot.val();
-            updateTableFromDB('#users-table', snapshot.val());
         });
 
 
@@ -52,15 +71,27 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 });
 
+// If the current connected user is admin everything is open
+// If its normal, then apply restrictions for him
+function changeUIforUserType(uid, users) {
+    // Users is normal type
+    if (users[uid].userType === "normal") {
+        // TODO:
+        document.getElementById("manageUsers-btn").style.display = "none";
+        document.getElementById("row-of-profit-chart").style.display = "none";
+
+    }
+}
+
 function showClientsTable() {
-    if (currentTableShowing != "clients-table") {
+    if (currentTableShowing != "clients-div") {
         if (currentTableShowing != "") {
             var elementShowend = document.getElementById(currentTableShowing);
             elementShowend.classList.add("d-none");
         }
-        var element = document.getElementById("clients-table");
+        var element = document.getElementById("clients-div");
         element.classList.remove("d-none");
-        currentTableShowing = "clients-table";
+        currentTableShowing = "clients-div";
     }
 }
 
@@ -116,14 +147,15 @@ function signupBtn() {
                     userType: permission,
                     email: email
                 });
-                alert(newname + ' ' + lastname + ' was added successfully!');
+                swal(newname + ' ' + lastname + ' was added successfully!', "", "success");
+
             }).catch(function failure(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                alert(errorCode + " " + errorMessage);
+                swal("You havent choose any client to delete!", "", "error");
             });
     } else {
-        alert('You have to enter all the data!');
+        swal("You have to enter all data", "", "warning");
     }
 }
 
@@ -135,6 +167,7 @@ function checkInputs() {
         return true;
     }
 }
+
 function showDashboard() {
     if (currentTableShowing != "charts") {
         if (currentTableShowing != "") {
@@ -163,6 +196,11 @@ function updateTableFromDB(tableId, dataFromDB) {
 }
 
 function updateRoomsTableFromDB(dataFromDB) {
+
+    $('#rooms-table-normal').bootstrapTable('destroy');
+    $('#rooms-table-deluxe').bootstrapTable('destroy');
+    $('#rooms-table-suite').bootstrapTable('destroy');
+
     var arrayOfNormalRooms = makeArrayFromJSON(dataFromDB.Normal);
     var arrayOfDeluxeRooms = makeArrayFromJSON(dataFromDB.Deluxe);
     var arrayOfSuiteRooms = makeArrayFromJSON(dataFromDB.Suite);
@@ -176,6 +214,7 @@ function updateRoomsTableFromDB(dataFromDB) {
         data: arrayOfSuiteRooms
     })
 }
+
 
 function makeArrayFromJSON(data) {
     var array = [];
@@ -201,6 +240,13 @@ function makeBarChart(ctx1, dataArray) {
             labels: ["Normal", "Deluxe", "Suite"]
         },
         options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            title: {
+                text: "Occupancy on each type of room right now",
+                display: true,
+                fontSize: 15
+            },
             scales: {
                 yAxes: [{
                     ticks: {
@@ -208,12 +254,17 @@ function makeBarChart(ctx1, dataArray) {
                         suggestedMax: 3,
                         stepSize: 1
                     }
-                }]
+                }],
+                xAxes: [
+                    {
+                        barThickness: 80
+                    }
+                ]
             },
 
             layout: {
                 padding: {
-                    left: 50,
+                    left: 0,
                     right: 0,
                     top: 0,
                     bottom: 0
@@ -221,6 +272,22 @@ function makeBarChart(ctx1, dataArray) {
             }
         }
     });
+
+    $('#loader').attr("style", "display: none !important;");
+    $('#charts').removeClass("d-none");
+}
+
+function setOccupancyCard(data) {
+    var sum = 0;
+    for (var num in data) {
+        sum += parseInt(data[num]);
+    }
+    var avg = Math.round((sum / 9) * 100);
+    $('#ocup-average').html("   " + avg + "%");
+}
+
+function float2dollar(value) {
+    return "$ " + (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
 function makeLineChart(ctx2, dataArray) {
@@ -238,19 +305,29 @@ function makeLineChart(ctx2, dataArray) {
                 'October', 'November', 'December']
         },
         options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            title: {
+                text: "Profits on current year",
+                display: true,
+                fontSize: 15
+            },
             scales: {
                 yAxes: [{
                     ticks: {
                         min: 0,
                         max: 1000,
-                        stepSize: 100
+                        stepSize: 100,
+                        callback: function (value, index, values) {
+                            return float2dollar(value);
+                        }
                     }
-                }]
+                }],
             },
 
             layout: {
                 padding: {
-                    left: 50,
+                    left: 0,
                     right: 0,
                     top: 0,
                     bottom: 0
@@ -258,6 +335,9 @@ function makeLineChart(ctx2, dataArray) {
             }
         }
     });
+
+    $('#loader').attr("style", "display: none !important;");
+    $('#charts').removeClass("d-none");
 }
 
 function getRoomsAvailability(dataFromDB) {
@@ -267,20 +347,41 @@ function getRoomsAvailability(dataFromDB) {
     var arrayOfResults = [];
     var counter = 0;
 
+    var checkIn;
+    var checkOut;
+
     for (var room in arrayOfNormalRooms) {
-        if (arrayOfNormalRooms[room].occupied == true) { counter++; }
+        var bookHistory = arrayOfNormalRooms[room].bookingHistory;
+        for (var booking in bookHistory) {
+            if (bookHistory[booking].checkIn === "none") { continue; }
+            checkIn = stringToDate(bookHistory[booking].checkIn);
+            checkOut = stringToDate(bookHistory[booking].checkOut);
+            if (!roomIsAvailableNow(checkIn, checkOut)) { counter++; break; }
+        }
     }
     arrayOfResults.push(counter);
     counter = 0;
 
     for (var room in arrayOfDeluxeRooms) {
-        if (arrayOfDeluxeRooms[room].occupied == true) { counter++; }
+        var bookHistory = arrayOfDeluxeRooms[room].bookingHistory;
+        for (var booking in bookHistory) {
+            if (bookHistory[booking].checkIn === "none") { continue; }
+            checkIn = stringToDate(bookHistory[booking].checkIn);
+            checkOut = stringToDate(bookHistory[booking].checkOut);
+            if (!roomIsAvailableNow(checkIn, checkOut)) { counter++; break; }
+        }
     }
     arrayOfResults.push(counter);
     counter = 0;
 
     for (var room in arrayOfSuiteRooms) {
-        if (arrayOfSuiteRooms[room].occupied == true) { counter++; }
+        var bookHistory = arrayOfSuiteRooms[room].bookingHistory;
+        for (var booking in bookHistory) {
+            if (bookHistory[booking].checkIn === "none") { continue; }
+            checkIn = stringToDate(bookHistory[booking].checkIn);
+            checkOut = stringToDate(bookHistory[booking].checkOut);
+            if (!roomIsAvailableNow(checkIn, checkOut)) { counter++; break; }
+        }
     }
     arrayOfResults.push(counter);
     counter = 0;
@@ -289,7 +390,168 @@ function getRoomsAvailability(dataFromDB) {
 
 }
 
+function stringToDate(str) {
+    var parts = str.split('/');
+    var myDate = new Date(parts[2], parts[1] - 1, parts[0]);
+    return myDate;
+}
+function roomIsAvailableNow(checkInDate, checkOutDate) {
+    if (Date.now() > checkInDate && Date.now() < checkOutDate) { return false; }
+    return true;
+}
+
 function getProfitsData(dataFromDB) {
     var ret = makeArrayFromJSON(dataFromDB);
     return ret;
+}
+
+function updateMessageDropdown(dataFromDB) {
+
+    var msgCounter = 0;
+
+    var data = dataFromDB.val();
+
+    $('#num-of-msgs').html(dataFromDB.numChildren());
+
+    for (var msg in data) {
+        var message = data[msg].message;
+        var name = data[msg].firstName;
+        var lastName = data[msg].lastName;
+        var email = data[msg].email;
+        var btnClasses;
+        var expanded;
+        var $card = $('<div>').attr("class", "card");
+        var $cardHeader = $('<div>').attr({ "class": "card-header", "id": "msg" + msgCounter });
+        var $partH5 = $('<h5>').attr("class", "mb-0");
+        var $answerButton = $('<button>').attr({ "class": "btn btn-primary", "onclick": "answerTo(this)", "email": email })
+            .html("Answer to " + name);
+        var $deleteMsgButton = $('<button>').attr({ "class": "btn btn-primary", "onclick": "deleteMsg(this)", "msg-id": msg })
+            .html("Delete this message");
+
+        if (msgCounter === 0) {
+            btnClasses = "btn btn-link";
+            expanded = true;
+        } else {
+            btnClasses = "btn btn-link collapsed";
+            expanded = false;
+        }
+
+        var $collapseBtn = $('<button>').attr({
+            "class": btnClasses
+            , "data-toggle": "collapse", "data-target": "#collapse" + msgCounter, "aria-expanded": expanded
+            , "aria-controls": "collapse" + msgCounter
+        }).html("Message from " + name + " " + lastName);
+        var $cardContent = $('<div>').attr({
+            "id": "collapse" + msgCounter, "class": "collapse container"
+            , "aria-labelledby": "msg" + msgCounter, "data-parent": "#accordion"
+        });
+        var $cardBody = $('<div>').attr("class", "card-body");
+
+        $("#accordion").append($card.append($cardHeader.append($partH5.append($collapseBtn)))
+            , $cardContent.append($cardBody.html(message), $answerButton, $deleteMsgButton));
+
+
+        msgCounter++;
+    }
+}
+
+function answerTo(e) {
+    window.open('mailto:' + e.getAttribute("email"));
+}
+
+function deleteMsg(e) {
+    if (confirm("Are you sure you want to delete this message?")) {
+        messagesRef.child(e.getAttribute("msg-id")).remove();
+    }
+}
+
+
+// Clients table listeners for checks and unchecks
+var checkedCustomersRows = [];
+$('#clients-table').on('check.bs.table', function (e, row) {
+    checkedCustomersRows.push({ email: row.email });
+});
+$('#clients-table').on('uncheck.bs.table', function (e, row) {
+    $.each(checkedCustomersRows, function (index, value) {
+        if (value.email === row.email) {
+            checkedCustomersRows.splice(index, 1);
+        }
+    });
+});
+
+function deleteClientsSelected() {
+    if (checkedCustomersRows.length === 0) {
+        swal("You havent choose any client to delete!", "", "warning");
+        return;
+    }
+
+    swal({
+        title: "Are you sure you want to delete this client?",
+        text: "Your will not be able to recover this information!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+          if (willDelete) {
+            var clientsRef = firebase.database().ref('clients/');
+            clientsRef.once('value').then(function (snapshot) {
+                var clients = snapshot.val();
+                for (var row in checkedCustomersRows) {
+                    for (var uid in clients) {
+                        if (checkedCustomersRows[row].email === clients[uid].email) {
+                            // Delete user with this uid from db
+                            clientsRef.child(uid).remove();
+                            break;
+                        }
+                    }
+                }
+            });
+            swal("Deleted!", "The client has been removed from data base", "success");
+          }
+      });
+}
+
+// Users table listeners for checks and unchecks
+var checkedUsersRows = []
+$('#users-table').on('check.bs.table', function (e, row) {
+    checkedUsersRows.push({ email: row.email });
+});
+$('#users-table').on('uncheck.bs.table', function (e, row) {
+    $.each(checkedUsersRows, function (index, value) {
+        if (value.email === row.email) {
+            checkedUsersRows.splice(index, 1);
+        }
+    });
+});
+
+function deleteUsersSelected() {
+    if (checkedUsersRows.length === 0) {
+        swal("You havent choose any user to delete!", "", "warning");
+        return;
+    }
+
+    swal({
+        title: "Are you sure you want to delete this user?",
+        text: "Your will not be able to recover this information!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            var usersRef = firebase.database().ref('users/');
+            usersRef.once('value').then(function (snapshot) {
+                var users = snapshot.val();
+                for (var row in checkedUsersRows) {
+                    for (var uid in users) {
+                        if (checkedUsersRows[row].email === users[uid].email) {
+                            // Delete user with this uid from db
+                            usersRef.child(uid).remove();
+                            break;
+                        }
+                    }
+                }
+            });
+            swal("Deleted!", "The user has been removed from data base", "success");
+        }
+    });
 }
