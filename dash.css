@@ -1,0 +1,196 @@
+body {
+    font-family: "Lato", sans-serif;
+    background-color: #F16C6D !important;
+}
+  
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sticky {
+    font-size:50px;
+    cursor:pointer;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-left: 10px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .center-table {
+      align-self: center;
+  }
+
+  .padding-left-right {
+      padding: 20px 20px 10px 50px;
+  }
+
+  .table {
+      background-color: white;
+  }
+
+  .transp-border {
+      border-radius: 10px;
+  }
+
+  .padding-left-right ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .header-logo-name {
+      height: 30px;
+  }
+
+  .divisor {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 38px;
+    margin-bottom: 50px;
+}
+
+.transp-border h2 {
+  align-content: center;
+  padding: 10px;
+}
+
+#users-div .btn {
+  margin: 20px 400px 0px 400px;
+}
+
+#clients-div .btn {
+  margin: 20px 400px 0px 400px;
+}
+
+.fixed-table-loading {
+  display: none;
+}
+
+#charts canvas {
+  background-color: white;
+  padding: 20px;
+}
+
+#charts .card {
+  margin: 10px;
+}
+
+#linearChart {
+  height: 300px;
+}
+
+#barChart {
+  height: 200px;
+}
+
+#charts h2 {
+  text-align: center;
+}
+
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+  input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/********************** Signup form **********************/
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+}
