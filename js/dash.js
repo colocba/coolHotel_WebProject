@@ -460,9 +460,18 @@ function answerTo(e) {
 }
 
 function deleteMsg(e) {
-    if (confirm("Are you sure you want to delete this message?")) {
-        messagesRef.child(e.getAttribute("msg-id")).remove();
-    }
+    swal({
+        title: "Are you sure you want to delete this message?",
+        text: "Your will not be able to recover this information!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+          if (willDelete) {
+            messagesRef.child(e.getAttribute("msg-id")).remove();
+            swal("Deleted!", "The message has been removed from data base", "success");
+          }
+      });
 }
 
 
