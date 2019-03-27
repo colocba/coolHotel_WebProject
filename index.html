@@ -122,6 +122,88 @@
                 </ul>
             </form>
         </div>
+    
+            <!------------------------------------ Rooms cards ---------------------------------------------->
+    <div class="row" id="room-cards">
+
+            <!----- Normal card ----->
+            <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                        <div class="card card-body collapse-card">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="pictures/room2.jpg" alt="Card image cap">
+                                <div id="card2" class="card-body inner-card">
+                                    <h5 class="card-title">Normal</h5>
+                                    <p id="card2NoRooms">No room left</p>
+                                    <p id="card2Text" class="card-text">
+                                        Bed <span> : 1 King Bed</span><br />
+                                        Size <span> : 50 m2</span><br />
+                                        Breakfast <span> : Yes</span><br />
+                                        Price <span id="price2"> --- </span><br />
+                                        Max Occupancy <span>: 3 Adult, 3 Child</span>
+                                    </p>
+                                    <button onclick="bookRoomFromIndex(this.id)" id="bookBtn2"
+                                        class="btn btn-primary" 
+                                        type="submit" form="book-form"
+                                        >BOOK NOW!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            <!----- Deluxe card ----->
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                    <div class="card card-body collapse-card">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="pictures/room1.jpg" alt="Card image cap">
+                            <div id="card1" class="card-body inner-card">
+                                <h5 class="card-title">Deluxe</h5>
+                                <p id="card1NoRooms">No room left</p>
+                                <p id="card1Text" class="card-text">
+                                    Bed <span> : 1 King Bed</span><br />
+                                    Size <span> : 100 m2</span><br />
+                                    Breakfast <span> : Yes</span><br />
+                                    Price <span id="price1"> --- </span><br />
+                                    Max Occupancy <span>: 3 Adult, 3 Child</span>
+                                </p>
+                                <button onclick="bookRoomFromIndex(this.id)" id="bookBtn1"
+                                    class="btn btn-primary" 
+                                    type="submit" form="book-form"
+                                    >BOOK NOW!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!----- Suite card ----->
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample3">
+                    <div class="card card-body collapse-card">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="pictures/room3.jpg" alt="Card image cap">
+                            <div id="card3" class="card-body inner-card">
+                                <h5 class="card-title">Suite</h5>
+                                <p id="card3NoRooms">No room left</p>
+                                <p id="card3Text" class="card-text">
+                                    Bed <span> : 1 King Bed</span><br />
+                                    Size <span> : 150 m2</span><br />
+                                    Breakfast <span> : Yes</span><br />
+                                    Price <span id="price3"> --- </span><br />
+                                    Max Occupancy <span>: 3 Adult, 3 Child</span>
+                                </p>
+                                <button onclick="bookRoomFromIndex(this.id)" id="bookBtn3"
+                                    class="btn btn-primary" 
+                                    type="submit" form="book-form"
+                                    >BOOK NOW!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <!------------------------------------ About us div ---------------------------------------------->
     <div class="about-us-div">
@@ -186,88 +268,6 @@
                     class="img-fluid m-1 p-1">
                 <img src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=750&q=80"
                     class="img-fluid image m-1 p-1" style="height: 185px;">
-            </div>
-        </div>
-    </div>
-
-    <!------------------------------------ Rooms cards ---------------------------------------------->
-    <div class="row" id="room-cards">
-
-        <!----- Normal card ----->
-        <div class="col">
-                <div class="collapse multi-collapse" id="multiCollapseExample2">
-                    <div class="card card-body collapse-card">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="pictures/room2.jpg" alt="Card image cap">
-                            <div id="card2" class="card-body inner-card">
-                                <h5 class="card-title">Normal</h5>
-                                <p id="card2NoRooms">No room left</p>
-                                <p id="card2Text" class="card-text">
-                                    Bed <span> : 1 King Bed</span><br />
-                                    Size <span> : 50 m2</span><br />
-                                    Breakfast <span> : Yes</span><br />
-                                    Price <span id="price2"> --- </span><br />
-                                    Max Occupancy <span>: 3 Adult, 3 Child</span>
-                                </p>
-                                <button onclick="bookRoomFromIndex(this.id)" id="bookBtn2"
-                                    class="btn btn-primary" 
-                                    type="submit" form="book-form"
-                                    >BOOK NOW!</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        <!----- Deluxe card ----->
-        <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample1">
-                <div class="card card-body collapse-card">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="pictures/room1.jpg" alt="Card image cap">
-                        <div id="card1" class="card-body inner-card">
-                            <h5 class="card-title">Deluxe</h5>
-                            <p id="card1NoRooms">No room left</p>
-                            <p id="card1Text" class="card-text">
-                                Bed <span> : 1 King Bed</span><br />
-                                Size <span> : 100 m2</span><br />
-                                Breakfast <span> : Yes</span><br />
-                                Price <span id="price1"> --- </span><br />
-                                Max Occupancy <span>: 3 Adult, 3 Child</span>
-                            </p>
-                            <button onclick="bookRoomFromIndex(this.id)" id="bookBtn1"
-                                class="btn btn-primary" 
-                                type="submit" form="book-form"
-                                >BOOK NOW!</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!----- Suite card ----->
-        <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample3">
-                <div class="card card-body collapse-card">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="pictures/room3.jpg" alt="Card image cap">
-                        <div id="card3" class="card-body inner-card">
-                            <h5 class="card-title">Suite</h5>
-                            <p id="card3NoRooms">No room left</p>
-                            <p id="card3Text" class="card-text">
-                                Bed <span> : 1 King Bed</span><br />
-                                Size <span> : 150 m2</span><br />
-                                Breakfast <span> : Yes</span><br />
-                                Price <span id="price3"> --- </span><br />
-                                Max Occupancy <span>: 3 Adult, 3 Child</span>
-                            </p>
-                            <button onclick="bookRoomFromIndex(this.id)" id="bookBtn3"
-                                class="btn btn-primary" 
-                                type="submit" form="book-form"
-                                >BOOK NOW!</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
