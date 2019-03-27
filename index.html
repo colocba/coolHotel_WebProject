@@ -71,6 +71,57 @@
             </div>
         </div>
     </div>
+    <!------------------------------------ Booking container ---------------------------------------------->
+    <div class="container-fluid book-cont" id="booking-div">
+            <form id="book-form" action="rooms.html" method="get" class="booking-cont">
+                <ul>
+                    <div class="d-none">
+                        <input id="room-type-input" name="roomType">
+                    </div>
+                    <li>
+                        <h4>Check in</h4>
+                        <div class="input-group">
+                            <input onclick="checkInFromIndex()" name="checkindate" class="form-control" id="checkin">
+                        </div>
+                    </li>
+    
+                    <li>
+                        <h4>Check out</h4>
+                        <div>
+                            <input onclick="checkOutFromIndex()" name="checkoutdate" class="form-control" id="checkout">
+                        </div>
+                    </li>
+    
+                    <li>
+                        <h4>Adults</h4>
+                        <select name="adults">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                        </select>
+                    </li>
+    
+                    <li>
+                        <h4>Childrens</h4>
+                        <select name="childrens">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                        </select>
+                    </li>
+    
+                    <li id="availbtn">
+                        <!--<a class="btn btn-primary btn-lg active" role="button" aria-pressed="true" data-toggle="collapse" href="index.html#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Check availability</a>-->
+                        <button id="roomCardsBtn" class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target=".multi-collapse" aria-expanded="false"
+                            aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3"
+                            onclick="goToCards()">
+                            Check Availability
+                        </button>
+                    </li>
+                </ul>
+            </form>
+        </div>
 
     <!------------------------------------ About us div ---------------------------------------------->
     <div class="about-us-div">
@@ -99,58 +150,6 @@
                 </div>
             </div>
         </div>
-
-    <!------------------------------------ Booking container ---------------------------------------------->
-    <div class="container-fluid book-cont" id="booking-div">
-        <form id="book-form" action="rooms.html" method="get" class="booking-cont">
-            <ul>
-                <div class="d-none">
-                    <input id="room-type-input" name="roomType">
-                </div>
-                <li>
-                    <h4>Check in</h4>
-                    <div class="input-group">
-                        <input onclick="checkInFromIndex()" name="checkindate" class="form-control" id="checkin">
-                    </div>
-                </li>
-
-                <li>
-                    <h4>Check out</h4>
-                    <div>
-                        <input onclick="checkOutFromIndex()" name="checkoutdate" class="form-control" id="checkout">
-                    </div>
-                </li>
-
-                <li>
-                    <h4>Adults</h4>
-                    <select name="adults">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                    </select>
-                </li>
-
-                <li>
-                    <h4>Childrens</h4>
-                    <select name="childrens">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                    </select>
-                </li>
-
-                <li id="availbtn">
-                    <!--<a class="btn btn-primary btn-lg active" role="button" aria-pressed="true" data-toggle="collapse" href="index.html#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Check availability</a>-->
-                    <button id="roomCardsBtn" class="btn btn-primary" type="button" data-toggle="collapse"
-                        data-target=".multi-collapse" aria-expanded="false"
-                        aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3"
-                        onclick="goToCards()">
-                        Check Availability
-                    </button>
-                </li>
-            </ul>
-        </form>
-    </div>
 
     <!------------------------------------ Pictures Grid ---------------------------------------------->
     <div class="container-fluid pic-grid-div" id="pic-grid">
