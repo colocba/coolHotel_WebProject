@@ -1,10 +1,10 @@
 *, html, body {
 	margin: 0;
-	padding: 0;
+    padding: 0;
 }
 
 header {
-    background-color: lightgrey;
+    background-color: whitesmoke;
     box-shadow: 5px 0px 6px #ccc;
     line-height: 70px;
 }
@@ -17,8 +17,7 @@ header {
 
 #head_list {
 	width: 70%;
-	float: right;
-	margin-left: 10%;
+    float: right;
 }
 
 #head_list a {
@@ -66,6 +65,26 @@ header {
 	height: 120px;
 }
 
+.pic-grid-div img {
+    margin: 5px;
+}
+
+.pic-grid-div {
+    padding: 20px;
+    background-color: #e0e0e0;
+}
+
+.flex-column {
+    max-width: 260px;
+}
+
+
+
+.scale {
+    transform: scaleY(1.05);
+    padding-top: 5px; 
+}
+
 #availbtn {
 	background-color: transparent;
 	padding: 0px 20px;
@@ -73,13 +92,13 @@ header {
 
 #ourrooms-h {
     font-family: "Cinzel Decorative";
-    font-size: 14px;
     font-weight: bold;
     line-height: 2.14;
     letter-spacing: 2.8px;
     text-align: center;
     color: #F16C6D;
     margin-bottom: 5px;
+    margin-top: 10px;
 }
 
 #chooseFavourite-h {
@@ -98,6 +117,43 @@ header {
     margin: 0 auto;
     margin-top: 38px;
     margin-bottom: 100px;
+}
+
+.about-us-div {
+    padding: 90px;
+}
+
+.about-us-div .divisor {
+    margin-bottom: 50px !important;
+}
+
+.about-head-title h5,h2 {
+    text-align: center;
+}
+
+.about-text p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    line-height: 2.14;
+    text-align: center;
+    color: #7b7b7b;
+}
+
+.about-managers p {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #333333;
+    margin: 0;
+}
+
+.pictures-head-title .divisor {
+    margin-bottom: 50px !important;
+}
+
+.pictures-head-title {
+    margin-top: 30px;
 }
 
 .item {
@@ -181,6 +237,12 @@ header {
     color: #7b7b7b;
 }
 
+.hotel-name-header {
+    margin-top: 27px;
+    margin-left: 20px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
 .card-title {
     color: #F16C6D;
 
@@ -215,7 +277,7 @@ header {
 }
 
 .clear-padding {
-	padding: 0px;
+	padding-left: 0px !important;
 }
 
 .icons-order {
@@ -369,5 +431,18 @@ header {
     opacity: 1;
     top: 50%;
     left: 50%;
+    margin-top: 10px;
 }
 
+.datepicker td, .datepicker th {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+#nav-tab-final-details li {
+    list-style-type: none;
+}
+
+#nav-tab-final-details i {
+    margin-right: 10px;
+}

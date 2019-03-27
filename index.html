@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Hotel</title>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -16,26 +17,35 @@
     <script src="js/caroufredsel.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="js/pureJSCalendar.js"></script>
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </head>
-<body>
+
+<body onload="indexUpdates()">
     <!------------------------------------ Header code ---------------------------------------------->
     <header class="sticky-top">
         <div class="container">
             <div class="row">
                 <a href="" class="logo">
-                    <img src=https://cdn0.iconfinder.com/data/icons/hotel-and-restaurant-cool-vector-2/128/57-512.png>
-                </a> <ul class="nav justify-content-end" id="head_list">
+                    <img src=https://cdn0.iconfinder.com/data/icons/hotel-and-restaurant-cool-vector-2/128/57-512.png> 
+                </a>
+                <h2 class="hotel-name-header">Cool Hotel!</h2>
+                <ul class="nav justify-content-end" id="head_list">
                     <li class="nav-item">
-                        <a class="nav-link active" onclick="goToBooking()" href="#">Book a room</a>
+                        <a class="nav-link active" onclick="goToBooking()" href="javascript:void(0);">Book a room</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="rooms.html">Rooms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Images</a>
+                        <a class="nav-link" onclick="goToImages()" href="javascript:void(0);">Images</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact us</a>
+                        <a class="nav-link" onclick="goToContactUs()" href="javascript:void(0);">Contact us</a>
                     </li>
                 </ul>
             </div>
@@ -46,130 +56,216 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100"
-                     src="https://media.istockphoto.com/photos/spa-couple-towels-with-candles-and-orchid-picture-id522331772?k=6&m=522331772&s=612x612&w=0&h=UoCDLlMI7BA_OiYMIhfF1FPJS_lq5tACn25K1g3C9jk="
-                     alt="First slide">
+                    src="https://www.bulgarihotels.com/.imaging/bhr-wide-small-jpg/dam/BALI/Foto-Bali_ultime-caricate/15-(3).jpg/jcr%3Acontent"
+                    alt="First slide">
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100"
-                     src="https://ybxzcgnc7b-flywheel.netdna-ssl.com/wp-content/uploads/2018/04/feeding.jpg"
-                     alt="Second slide">
+                    src="https://www.telegraph.co.uk/content/dam/Travel/hotels/europe/italy/amalfi/monastero-santa-rosa-amalfi.jpg?imwidth=450"
+                    alt="Second slide">
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100"
-                     src="https://www.thetimes.co.uk/imageserver/image/methode%2Ftimes%2Fprod%2Fweb%2Fbin%2Fa4be5dc2-59ed-11e8-9e86-99299e0f1a1c.jpg?crop=1909%2C1074%2C51%2C399&resize=685"
-                     alt="Third slide">
+                    src="https://cdn.cnn.com/cnnnext/dam/assets/120726044904-post-ranch-inn-horizontal-large-gallery.jpg"
+                    alt="Third slide">
             </div>
         </div>
     </div>
 
+    <!------------------------------------ About us div ---------------------------------------------->
+    <div class="about-us-div">
+            <div class="container">
+                <div class="about-head-title">
+                    <h5 style='font-family: "Arial Black", Gadget, sans-serif; color: #F16C6D;'>Welcome To</h5>
+                    <h2 style='font-family: "Comic Sans MS", cursive, sans-serif;'>Cool Hotel</h2>
+                    <div class="divisor"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1" style="margin-left: 8.5%;">
+                        <div class="about-text justify-content-center">
+                            <p>
+                                This is our hotel made with a lot of love and tears by Amit and Amir. <br>
+                                The hotel contains three different types of rooms: <br>
+                                Rooms: Even do they are normal, they are awesome!!! <br>
+                                Deluxe Rooms: Even better rooms. Ideal for executives. <br>
+                                Suite: Great for honeymoon couples with a lot lot of money. <br>
+                            </p>
+                        </div>
+                        <div class="about-managers">
+                            <p>Amit Lapid - <span>Manager</span></p>
+                            <p>Amir Baum - <span>Manager</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <!------------------------------------ Booking container ---------------------------------------------->
     <div class="container-fluid book-cont" id="booking-div">
-        <form action="action.php" class="booking-cont">
+        <form id="book-form" action="rooms.html" method="get" class="booking-cont">
             <ul>
+                <div class="d-none">
+                    <input id="room-type-input" name="roomType">
+                </div>
                 <li>
                     <h4>Check in</h4>
                     <div class="input-group">
-                        <input name="checkindate" class="form-control" id="checkin">
+                        <input onclick="checkInFromIndex()" name="checkindate" class="form-control" id="checkin">
                     </div>
                 </li>
+
                 <li>
                     <h4>Check out</h4>
                     <div>
-                        <input name="checkoutdate" class="form-control" id="checkout">
+                        <input onclick="checkOutFromIndex()" name="checkoutdate" class="form-control" id="checkout">
                     </div>
                 </li>
+
                 <li>
                     <h4>Adults</h4>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            1
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button">1</button>
-                            <button class="dropdown-item" type="button">2</button>
-                            <button class="dropdown-item" type="button">3</button>
-                        </div>
-                    </div>
+                    <select name="adults">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                    </select>
                 </li>
+
                 <li>
                     <h4>Childrens</h4>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            1
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button">1</button>
-                            <button class="dropdown-item" type="button">2</button>
-                            <button class="dropdown-item" type="button">3</button>
-                        </div>
-                    </div>
+                    <select name="childrens">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                    </select>
                 </li>
+
                 <li id="availbtn">
                     <!--<a class="btn btn-primary btn-lg active" role="button" aria-pressed="true" data-toggle="collapse" href="index.html#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Check availability</a>-->
-                    <button id="roomCardsBtn" class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false"
-                            aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3"
-                            onclick="goToCards()">
-                        Toggle both elements
+                    <button id="roomCardsBtn" class="btn btn-primary" type="button" data-toggle="collapse"
+                        data-target=".multi-collapse" aria-expanded="false"
+                        aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3"
+                        onclick="goToCards()">
+                        Check Availability
                     </button>
                 </li>
             </ul>
         </form>
     </div>
+
+    <!------------------------------------ Pictures Grid ---------------------------------------------->
+    <div class="container-fluid pic-grid-div" id="pic-grid">
+        <div class="pictures-head-title">
+            <h2 style='font-family: "Comic Sans MS", cursive, sans-serif;'>Our facilites</h2>
+            <div class="divisor"></div>
+        </div>
+        <div class="d-flex flex-row flex-wrap justify-content-center">
+            <div class="d-flex flex-column">
+                <img src="https://www.gannett-cdn.com/-mm-/2d299531e7096ee3a5068e5ab0bf464c2341f0c8/c=54-0-2171-2823/local/-/media/2017/03/29/FortCollins/FortCollins/636263967742305954-FMNBrd-06-26-2016-DailyTimes-1-B001--2016-06-25-IMG-FMN-SJO-DAY-3-0626-0-1-1-EVEQAKPB-L835194854-IMG-FMN-SJO-DAY-3-0626-0-1-1-EVEQAKPB.jpg?width=534&height=712&fit=crop"
+                    class="img-fluid">
+    
+                <img src="https://pixfeeds.com/images/sports/tennis/1280-179193346-women-playing-tennis.jpg"
+                    class="img-fluid" style="height: 230px;">
+            </div>
+    
+            <div class="d-flex flex-column">
+                <img src="https://st2.depositphotos.com/3476693/10674/i/950/depositphotos_106741934-stock-photo-spa-background-vertical.jpg"
+                    class="img-fluid">
+    
+                <img src="https://www.ramsidespa.co.uk/media/66016/ultimate_lifestage_facial-1.jpg?mode=crop&anchor=center&width=600&height=450"
+                    class="img-fluid scale" style="height: 190px;">
+            </div>
+    
+            <div class="d-flex flex-column">
+                <img src="https://images.unsplash.com/photo-1497888329096-51c27beff665?auto=format&fit=crop&w=751&q=80"
+                    class="img-fluid scale mb-2">
+                <img src="https://images.unsplash.com/photo-1505253468034-514d2507d914?auto=format&fit=crop&w=334&q=80"
+                    class="img-fluid" style="height: 395px;">
+            </div>
+    
+            <div class="d-flex flex-column">
+                <img src="https://images.unsplash.com/photo-1502550900787-e956c314a221?auto=format&fit=crop&w=334&q=80"
+                    class="img-fluid m-1 p-1">
+                <img src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=750&q=80"
+                    class="img-fluid image m-1 p-1" style="height: 185px;">
+            </div>
+        </div>
+    </div>
+
     <!------------------------------------ Rooms cards ---------------------------------------------->
     <div class="row" id="room-cards">
+
+        <!----- Normal card ----->
+        <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                    <div class="card card-body collapse-card">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="pictures/room2.jpg" alt="Card image cap">
+                            <div id="card2" class="card-body inner-card">
+                                <h5 class="card-title">Normal</h5>
+                                <p id="card2NoRooms">No room left</p>
+                                <p id="card2Text" class="card-text">
+                                    Bed <span> : 1 King Bed</span><br />
+                                    Size <span> : 50 m2</span><br />
+                                    Breakfast <span> : Yes</span><br />
+                                    Price <span id="price2"> --- </span><br />
+                                    Max Occupancy <span>: 3 Adult, 3 Child</span>
+                                </p>
+                                <button onclick="bookRoomFromIndex(this.id)" id="bookBtn2"
+                                    class="btn btn-primary" 
+                                    type="submit" form="book-form"
+                                    >BOOK NOW!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!----- Deluxe card ----->
         <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseExample1">
                 <div class="card card-body collapse-card">
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="pictures/room1.jpg" alt="Card image cap">
                         <div id="card1" class="card-body inner-card">
-                            <h5 class="card-title">Card title</h5>
-                            <p id="card1NoRooms">no room left</p>
+                            <h5 class="card-title">Deluxe</h5>
+                            <p id="card1NoRooms">No room left</p>
                             <p id="card1Text" class="card-text">
                                 Bed <span> : 1 King Bed</span><br />
-                                Size <span> : 50 m2</span><br />
+                                Size <span> : 100 m2</span><br />
                                 Breakfast <span> : Yes</span><br />
-                                Max Occupancy <span>: 2 Adult, 1 Child</span>
+                                Price <span id="price1"> --- </span><br />
+                                Max Occupancy <span>: 3 Adult, 3 Child</span>
                             </p>
-                            <a id="bookBtn1" href="#" class="btn btn-primary">BOOK NOW!</a>
+                            <button onclick="bookRoomFromIndex(this.id)" id="bookBtn1"
+                                class="btn btn-primary" 
+                                type="submit" form="book-form"
+                                >BOOK NOW!</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample2">
-                <div class="card card-body collapse-card">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="pictures/room2.jpg" alt="Card image cap">
-                        <div id="card2" class="card-body inner-card">
-                            <h5 class="card-title">Card title</h5>
-                            <p id="card2NoRooms">no room left</p>
-                            <p id="card2Text" class="card-text">
-                                Bed <span> : 1 King Bed</span><br />
-                                Size <span> : 50 m2</span><br />
-                                Breakfast <span> : Yes</span><br />
-                                Max Occupancy <span>: 2 Adult, 1 Child</span>
-                            </p>                            <a id="bookBtn2" href="#" class="btn btn-primary">BOOK NOW!</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <!----- Suite card ----->
         <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseExample3">
                 <div class="card card-body collapse-card">
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="pictures/room3.jpg" alt="Card image cap">
                         <div id="card3" class="card-body inner-card">
-                            <h5 class="card-title">Card title</h5>
-                            <p id="card3NoRooms">no room left</p>
+                            <h5 class="card-title">Suite</h5>
+                            <p id="card3NoRooms">No room left</p>
                             <p id="card3Text" class="card-text">
                                 Bed <span> : 1 King Bed</span><br />
-                                Size <span> : 50 m2</span><br />
+                                Size <span> : 150 m2</span><br />
                                 Breakfast <span> : Yes</span><br />
-                                Max Occupancy <span>: 2 Adult, 1 Child</span>
-                            </p>                            <a id="bookBtn3" href="#" class="btn btn-primary">BOOK NOW!</a>
+                                Price <span id="price3"> --- </span><br />
+                                Max Occupancy <span>: 3 Adult, 3 Child</span>
+                            </p>
+                            <button onclick="bookRoomFromIndex(this.id)" id="bookBtn3"
+                                class="btn btn-primary" 
+                                type="submit" form="book-form"
+                                >BOOK NOW!</button>
                         </div>
                     </div>
                 </div>
@@ -178,51 +274,52 @@
     </div>
     <!------------------------------------ send message ---------------------------------------------->
     <footer class="message-footer">
-        <div class="container">
+        <div id="send-message-div" class="container">
             <div class="row">
                 <div class="container message-container">
-                    <h3>hi you, send somthing</h3>
-                    <form action="/action_page.php">
-                        <label for="fname">First Name</label>
-                        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                    <h3>Tell us something !</h3>
+                    <label for="fname">First Name</label>
+                    <input class="form-control" type="text" id="fname" name="firstname" placeholder="Your name..">
 
-                        <label for="lname">Last Name</label>
-                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                    <label for="lname">Last Name</label>
+                    <input class="form-control" type="text" id="lname" name="lastname" placeholder="Your last name..">
 
-                        <label for="subject">Subject</label>
-                        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                    <label for="email">Email</label>
+                    <input class="form-control" type="text" id="email-input" name="lastname" placeholder="Your email..">
 
-                        <input id="send-btn" type="submit" value="Submit">
-                    </form>
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" name="message" placeholder="Write something.."
+                        style="height:200px"></textarea>
+
+                    <input id="send-btn" type="submit" value="Submit" onclick="submitMsg()">
                 </div>
             </div>
         </div>
     </footer>
+
     <!------------------------------------ contact us ---------------------------------------------->
     <footer class="site-footer">
-        <div class="container">
+        <div id="contact-us-div" class="container">
             <div class="row">
                 <div class="col-sm-4 "></div>
-                <div class="col-sm-4" id="contact-us-div">
+                <div class="col-sm-4">
                     <div id="contact-us-logo">
                         <a href="#" class="logo">
                             <img src=https://cdn0.iconfinder.com/data/icons/hotel-and-restaurant-cool-vector-2/128/57-512.png>
-                        </a>
-                    </div>
-                    <div>
-                        <div class="widget-content">
-                            <p><i class='fa fa-phone-square'></i>  052-625-1007 </p>
-                            <p><i class="fas fa-envelope"></i>  contact@benAmarHotel.com</p>
-                            <p><i class="fas fa-globe"></i>  45 Queen's Park Rd, Brighton, BN2 0GJ, UK</p>
-                        </div>
-                        <div class="content-share">
-                            <p>
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            </p>
-                        </div>
+                                </a> </div> <div>
+                            <div class="widget-content">
+                                <p><i class='fa fa-phone-square'></i> 052-625-1008 </p>
+                                <p><i class="fas fa-envelope"></i> contact@coolhotel.com</p>
+                                <p><i class="fas fa-globe"></i> 45 Queen's Park Rd, Brighton, BN2 0GJ, UK</p>
+                            </div>
+                            <div class="content-share">
+                                <p>
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                </p>
+                            </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -249,4 +346,5 @@
 </script>
 
 <script src="js/main.js"></script>
+
 </html>

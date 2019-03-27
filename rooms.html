@@ -1,183 +1,483 @@
 <!DOCTYPE html>
 <html>
-        <head>
-                <title>Rooms</title>
-                <link rel="stylesheet" type="text/css" href="style.css">
-                <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.css">
-                <link rel="stylesheet" href="css/themify-icons.css">
-                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-                <!-- Latest compiled and minified CSS -->
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-                <!-- jQuery library -->
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <!-- Popper JS -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-                <!-- Latest compiled JavaScript -->
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        </head>
 
-        <body>
-                <header class="sticky-top">
-                        <div class="container">
-                            <div class="row">
-                                <a href="" class="logo"><img
-                                        src=https://cdn0.iconfinder.com/data/icons/hotel-and-restaurant-cool-vector-2/128/57-512.png>
-                                        </a> <ul class="nav justify-content-end" id="head_list">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" onclick="goToBooking()" href="index.html#booking-div">Book a room</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Rooms</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Images</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Contact us</a>
-                                    </li>
-                                    </ul>
-                            </div>
+<head>
+    <title>Rooms</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css"
+        rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+</head>
+
+<body onload="roomsUpdates()">
+    <!------------------------------------------ Header ------------------------------------------>
+    <header class="sticky-top">
+        <div class="container">
+            <div class="row">
+                <a href="index.html" class="logo">
+                    <img src=https://cdn0.iconfinder.com/data/icons/hotel-and-restaurant-cool-vector-2/128/57-512.png>
+                </a> 
+                <h2 class="hotel-name-header">Cool Hotel!</h2>
+                <ul class="nav justify-content-end" id="head_list">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html#booking-div">Book a
+                            room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Rooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#pic-grid">Images</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#send-message-div">Contact us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!------------------------------------------ Rooms carousel ---------------------------------->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100"
+                    src="https://statlerhotel.cornell.edu/resourcefiles/roomssmallimages/traditional-king-guestrooms.jpg"
+                    alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://www.fletcherhotelamsterdam.nl/data/images/1/4/7/0/2/lijst.png"
+                    alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100"
+                    src="https://i.pinimg.com/originals/c0/be/76/c0be76c461bce7125ffedfb05cf96ccc.png"
+                    alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!--------------------------------------- Choose your room div ---------------------------------->
+    <div class="container">
+        <h3 id="ourrooms-h">Our rooms</h3>
+        <h4 id="chooseFavourite-h">Choose your favourite</h4>
+        <div class="divisor"></div>
+        <!-- Normal room -->
+        <div id="normal-room-div" class="row item">
+            <div class="col-md-8 clear-padding">
+                <img src="pictures/room2.jpg">
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <h3>Normal</h3>
+                    <ul>
+                        <li>
+                            <p><i class="fas fa-bed"></i> Bed <span> : 1 King
+                                    Bed</span></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-arrows-alt-h"></i> Size <span> : 50
+                                    m2</span></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-coffee"></i> Breakfast
+                                <span> : Yes</span></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-users"></i> Max Occupancy: <span>
+                                    3 Adult, 3 Child</span></p>
+                        </li>
+                    </ul>
+                    <div class="price-item">
+                        <div class="price-item-left">
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-dollar-sign" style="margin-right: 10px;"></i>Price per night :
+                                    </p>
+                                </li>
+                                <li>
+                                    <p id="normal-price"><span>Night</span></p>
+                                </li>
+                            </ul>
                         </div>
-                </header>
-
-                <!------------------------------------------ Rooms carousel ---------------------------------->
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://statlerhotel.cornell.edu/resourcefiles/roomssmallimages/traditional-king-guestrooms.jpg" alt="First slide">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100" src="https://www.fletcherhotelamsterdam.nl/data/images/1/4/7/0/2/lijst.png" alt="Second slide">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100" src="https://i.pinimg.com/originals/c0/be/76/c0be76c461bce7125ffedfb05cf96ccc.png" alt="Third slide">
-                          </div>
+                        <div class="price-item-right">
+                            <a onclick="showDetails(this.id)" id="bookNormalButton" data-toggle="modal"
+                                href="#bookModal"> BOOK NOW <i class="fa fa-caret-right" aria-hidden="true"></i></a>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                </div>
-
-                <!--------------------------------------- Choose your room div ---------------------------------->
-                <div class="container">
-                    <h3 id="ourrooms-h">Our rooms</h3>
-                    <h4 id="chooseFavourite-h">Choose your favourite</h4>
-                    <div class="divisor"></div>
-
-                    <!-- First room -->
-                    <div class="row item">
-                            <div class="col-md-8 clear-padding">
-                                    <img src="pictures/room1.jpg">
-                                </div>
-                                <div class="col-md-4">
-                                        <div>
-                                                <h3><a href="#">Class Room</a></h3>
-                                                <ul>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">hotel</i> Bed <span> : 1 King Bed</span></p></li>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">swap_horiz</i> Size <span> : 50 m2</span></p></li>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">free_breakfast</i> Breakfast <span> : Yes</span></p></li>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">people</i> Max Occupancy: <span> : 2 Adult, 1 Child</span></p></li>
-                                                </ul>
-                                                <div class="price-item">
-                                                    <div class="price-item-left">
-                                                        <ul>
-                                                            <li>
-                                                                <p>Starting Form : </p>
-                                                            </li>
-                                                            <li>
-                                                                <p>$200/ <span>Night</span></p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price-item-right">
-                                                        <a href="#"> BOOK NOW <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                        </div>
-                                </div>
-                    </div>
-
-                    <!-- Second room -->
-                    <div class="row item">
-                            <div class="col-md-8 clear-padding">
-                                    <img src="pictures/room1.jpg">
-                                </div>
-                                <div class="col-md-4">
-                                        <div>
-                                                <h3><a href="#">Class Room</a></h3>
-                                                <ul>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">hotel</i> Bed <span> : 1 King Bed</span></p></li>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">swap_horiz</i> Size <span> : 50 m2</span></p></li>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">free_breakfast</i> Breakfast <span> : Yes</span></p></li>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">people</i> Max Occupancy: <span> : 2 Adult, 1 Child</span></p></li>
-                                                </ul>
-                                                <div class="price-item">
-                                                    <div class="price-item-left">
-                                                        <ul>
-                                                            <li>
-                                                                <p>Starting Form : </p>
-                                                            </li>
-                                                            <li>
-                                                                <p>$200/ <span>Night</span></p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price-item-right">
-                                                        <a href="#"> BOOK NOW <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                        </div>
-                                </div>
-                    </div>
-
-                    <!-- Third room -->
-                    <div class="row item">
-                            <div class="col-md-8 clear-padding">
-                                    <img src="pictures/room1.jpg">
-                                </div>
-                                <div class="col-md-4">
-                                        <div>
-                                                <h3><a href="#">Class Room</a></h3>
-                                                <ul>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">hotel</i> Bed <span> : 1 King Bed</span></p></li>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">swap_horiz</i> Size <span> : 50 m2</span></p></li>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">free_breakfast</i> Breakfast <span> : Yes</span></p></li>
-                                                    <li><p><i class="icons-order material-icons" aria-hidden="true">people</i> Max Occupancy: <span> : 2 Adult, 1 Child</span></p></li>
-                                                </ul>
-                                                <div class="price-item">
-                                                    <div class="price-item-left">
-                                                        <ul>
-                                                            <li>
-                                                                <p>Starting Form : </p>
-                                                            </li>
-                                                            <li>
-                                                                <p>$200/ <span>Night</span></p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price-item-right">
-                                                        <a href="#"> BOOK NOW <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                        </div>
-                                </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Deluxe room -->
+        <div id="deluxe-room-div" class="row item">
+            <div class="col-md-8 clear-padding">
+                <img src="pictures/room1.jpg">
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <h3 id="deluxeH">Deluxe</h3>
+                    <ul>
+                        <li>
+                            <p><i class="fas fa-bed"></i> Bed <span> : 1 King
+                                    Bed</span></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-arrows-alt-h"></i> Size <span> : 100
+                                    m2</span></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-coffee"></i> Breakfast
+                                <span> : Yes</span></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-users"></i> Max Occupancy: <span>
+                                    3 Adult, 3 Child</span></p>
+                        </li>
+                    </ul>
+                    <div class="price-item">
+                        <div class="price-item-left">
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-dollar-sign" style="margin-right: 10px;"></i>Price per night :
+                                    </p>
+                                </li>
+                                <li>
+                                    <p id="deluxe-price"> <span>Night</span></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="price-item-right">
+                            <a onclick="showDetails(this.id)" id="bookDeluxeButton" data-toggle="modal"
+                                href="#bookModal"> BOOK NOW <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Suite room -->
+        <div id="suite-room-div" class="row item">
+            <div class="col-md-8 clear-padding">
+                <img src="pictures/room3.jpg">
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <h3>Suite</h3>
+                    <ul>
+                        <li>
+                            <p><i class="fas fa-bed"></i> Bed <span> : 1 King
+                                    Bed</span></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-arrows-alt-h"></i> Size <span> : 150
+                                    m2</span></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-coffee"></i> Breakfast
+                                <span> : Yes</span></p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-users"></i> Max Occupancy: <span>
+                                    3 Adult, 3 Child</span></p>
+                        </li>
+                    </ul>
+                    <div class="price-item">
+                        <div class="price-item-left">
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-dollar-sign" style="margin-right: 10px;"></i>Price per night :
+                                    </p>
+                                </li>
+                                <li>
+                                    <p id="suite-price"><span>Night</span></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="price-item-right">
+                            <a onclick="showDetails(this.id)" id="bookSuiteButton" data-toggle="modal"
+                                href="#bookModal"> BOOK NOW <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------------------- Modal --------------------------------------------->
+    <div id="bookModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-        </body>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="card-body p-5">
+                    <!--  Tab list into modal (Details - Pay - Details of your book) -->
+                    <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                        <li class="nav-item">
+                            <a id="initial-item-rm" class="nav-link active" style="margin-right: 5px;"
+                                data-toggle="pill" href="#nav-tab-details">
+                                <i class="fas fa-info-circle"></i> Details
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="pay-btn-rm" class="nav-link disabled" style="margin-right: 5px;" data-toggle="pill"
+                                href="#nav-tab-card">
+                                <i class="fa fa-credit-card" style="margin-right: 5px;"></i> Pay
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="final-details-btn-rm" class="nav-link disabled" data-toggle="pill"
+                                href="#nav-tab-final-details">
+                                <i class="fas fa-check-circle" style="margin-right: 5px;"></i> Details of your book
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!--  Content of details tab  -->
+                    <div class="tab-content">   
+                        <div class="tab-pane fade show active" id="nav-tab-details">
+                            <form>
+                                <div class="form-group">
+                                    <label id="roomTypeModal">----</label>
+                                </div>
+                                <!--  First name and last name  -->
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <input id="firstNameRoomModal" type="text" class="form-control"
+                                            placeholder="First name">
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please choose a name.
+                                    </div>
+                                    <div class="col">
+                                        <input id="lastNameRoomModal" type="text" class="form-control"
+                                            placeholder="Last name">
+                                    </div>
+                                </div>
+                                <!--  Email  -->
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="mailModale"
+                                        placeholder="enter your mail">
+                                </div>
+                                <!--  Country  -->
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="countryModal"
+                                        placeholder="where are you from?">
+                                </div>
+                                <!--  Phone number  -->
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="phoneNumberModal"
+                                        placeholder="what is your phone number?">
+                                </div>
+                                <!--  Adults and children boxes  -->
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <select class="custom-select my-1 mr-sm-2" id="adoultsSelRM">
+                                            <option selected>Adults number...</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <select class="custom-select my-1 mr-sm-2" id="childrenSelRM">
+                                            <option selected>Childrens number...</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!--  Check in and check out  -->
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <label for="checkInModal">check in</label>
+                                        <input class="form-control" placeholder="check in" data-date-format="dd/mm/yyyy"
+                                            id="checkInModal">
+                                        <script type="text/javascript">
+                                            $('#checkInModal').datepicker({
+                                                weekStart: 1,
+                                                daysOfWeekHighlighted: "6,0",
+                                                autoclose: true,
+                                                todayHighlight: true,
+                                            });
+                                            $('#checkInModal').datepicker("setDate", new Date());
+                                        </script>
+                                    </div>
+                                    <div class="col">
+                                        <label for="checkOutModal">check out</label>
+                                        <input class="form-control" placeholder="check out"
+                                            data-date-format="dd/mm/yyyy" id="checkOutModal">
+                                        <script type="text/javascript">
+                                            $('#checkOutModal').datepicker({
+                                                weekStart: 1,
+                                                daysOfWeekHighlighted: "6,0",
+                                                autoclose: true,
+                                                todayHighlight: true,
+                                            });
+                                            $('#checkOutModal').datepicker("setDate", new Date());
+                                        </script>
+                                    </div>
+                                </div>
+
+                                <!--  Check price  -->
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <button id="shwoTotalPriceRM" onclick="updateTotalPrice(this.id)"
+                                            class="subscribe btn btn-primary btn-block" type="button">
+                                            Check Price
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!--  Total price after pressing button  -->
+                                <div class="form-group">
+                                        <h3 style="text-align: center;">Total price: </h3>
+                                    <h3 style="text-align: center;" id="totalPriceRM"></h3>
+                                </div>
         
-        <script src="js/main.js"></script>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-tab-card">
+                            <p class="alert alert-success">Enter your credit card details in order to continue with the
+                                process</p>
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="username">Full name (on the card)</label>
+                                    <input id="name-creditcard-rm" type="text" class="form-control" name="username"
+                                        placeholder="" required="">
+                                </div> <!-- form-group.// -->
+
+                                <div class="form-group">
+                                    <label for="cardNumber">Card number</label>
+                                    <div class="input-group">
+                                        <input id="number-creditcard-rm" type="text" class="form-control"
+                                            name="cardNumber" placeholder="">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text text-muted">
+                                                <i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i>
+                                                &nbsp;
+                                                <i class="fab fa-cc-mastercard"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div> <!-- form-group.// -->
+
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label><span class="hidden-xs">Expiration</span> </label>
+                                            <div class="input-group">
+                                                <input id="month-creditcard-rm" class="form-control" placeholder="MM"
+                                                    name="">
+                                                <input id="year-creditcard-rm" class="form-control" placeholder="YY"
+                                                    name="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label data-toggle="tooltip" title=""
+                                                data-original-title="3 digits code on back side of the card">CVV</label>
+                                            <input id="cvv-creditcard-rm" class="form-control" required="">
+                                        </div> <!-- form-group.// -->
+                                    </div>
+                                </div> <!-- row.// -->
+                                <button onclick="confirmReservationFromRoom()"
+                                    class="subscribe btn btn-primary btn-block" type="button">
+                                    Confirm
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!--  Final details tab pane  -->
+                        <div class="tab-pane fade" id="nav-tab-final-details">
+                            <h3>Final Details of your reservation</h3>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-arrows-alt-h"></i> Size <span id="room-size-rm"></span></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-coffee"></i> Breakfast
+                                        <span> : Yes</span></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-users"></i> People on room: <span id="people-number-rm"></span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-dollar-sign"></i> Price payed: <span id="price-rm"></span></p>
+                                </li>
+                                <li>
+                                    <p><i class="far fa-credit-card"></i> Credit card number: <span
+                                            id="cc-number-rm"></span></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-calendar-week"></i> Check in: <span id="ci-rm"></span></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-calendar-week"></i> Check out: <span id="co-rm"></span></p>
+                                </li>
+                                <li class="justify-content-center">
+                                    <h2 style="text-align: center;">Enjoy your stay!</h2>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+
+<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBV4ZUpD-VGeQyQMwvXxHVhC4gG2pvf_pk",
+        authDomain: "coolhotel-f70fd.firebaseapp.com",
+        databaseURL: "https://coolhotel-f70fd.firebaseio.com",
+        projectId: "coolhotel-f70fd",
+        storageBucket: "coolhotel-f70fd.appspot.com",
+        messagingSenderId: "795625797575"
+    };
+    firebase.initializeApp(config);
+</script>
+
+<script src="js/main.js"></script>
+
 </html>
