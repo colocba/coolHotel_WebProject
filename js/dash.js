@@ -148,11 +148,12 @@ function signupBtn() {
                     email: email
                 });
                 swal(newname + ' ' + lastname + ' was added successfully!', "", "success");
+                secondaryApp.delete();
 
             }).catch(function failure(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                swal("You havent choose any client to delete!", "", "error");
+                swal(errorMessage, "", "error");
             });
     } else {
         swal("You have to enter all data", "", "warning");
@@ -316,8 +317,8 @@ function makeLineChart(ctx2, dataArray) {
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        max: 1000,
-                        stepSize: 100,
+                        max: 50000,
+                        stepSize: 10000,
                         callback: function (value, index, values) {
                             return float2dollar(value);
                         }
