@@ -659,4 +659,7 @@ function submitMsg() {
         lastName: lastName,
         message: message
     });
+
+    swal("Thanks for contacting us!", "We will answer you soon", "success");
+
 }
